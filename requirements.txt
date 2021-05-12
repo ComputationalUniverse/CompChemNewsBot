@@ -1,0 +1,4 @@
+tweepy
+feedparser
+decouple
+bs4
