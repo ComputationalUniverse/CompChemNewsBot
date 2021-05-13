@@ -24,7 +24,6 @@ ACCESS_TOKEN_SECRET = config('Access_Token_Secret')
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET_KEY)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
-userID = "Aritraroy24Roy"
 
 class ParseFeed():
 
@@ -82,7 +81,7 @@ class ParseFeed():
         while True:
             choice = random.choice(range(len(text_list)+1))
             try:
-                api.update_status(f"@Aritraroy24Roy #compchem #news #update #science #chemistry #quantum\n𝙏𝙊𝘿𝘼𝙔'𝙎 𝙐𝙋𝘿𝘼𝙏𝙀: {text_list[choice]}\n{url_list[choice]}")
+                api.update_status(f"@aritraroy24 #compchem #news #update #science #chemistry #quantum\n𝙏𝙊𝘿𝘼𝙔'𝙎 𝙐𝙋𝘿𝘼𝙏𝙀: {text_list[choice]}\n{url_list[choice]}")
                 logger.info(
                     f"Tweet done at : {str(datetime.datetime.now())} === {text_list[choice]} === {url_list[choice]}\n\n\n")
                 break
