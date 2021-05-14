@@ -8,7 +8,7 @@ import datetime
 import random
 
 # url for collecting news
-url = "http://news.google.com/news?q=computational+chemistry&hl=en-US&sort=date&gl=US&num=100&output=rss"
+url = "http://news.google.com/news?q=computational+chemistry+when:1d&hl=en-IN&gl=IN&ceid=IN:en&output=rss"
 
 # logging config
 logging.basicConfig(level=logging.INFO, filename='data.txt',)
@@ -78,20 +78,22 @@ class ParseFeed():
         '''
         Posting the news in the twitter and logging the data (First news of the list will be posted: One can modify by using random function)
         '''
-        while True:
-            choice = random.choice(range(len(text_list)+1))
+        choice = random.choice(range(len(text_list)+1))
+        for text in text_list:
+            if choice == text:
+                text_list.pop(choice)
+
+        for text in text_list:
             try:
-                api.update_status(f"@aritraroy24 #compchem #news #update #science #chemistry #quantum\n𝙏𝙊𝘿𝘼𝙔'𝙎 𝙐𝙋𝘿𝘼𝙏𝙀: {text_list[choice]}\n{url_list[choice]}")
+                api.update_status(f"@aritraroy24 #compchem #news #update #science #chemistry #quantum\n𝙏𝙊𝘿𝘼𝙔'𝙎 𝙐𝙋𝘿𝘼𝙏𝙀: {text_list[0]}\n{url_list[0]}")
                 logger.info(
-                    f"Tweet done at : {str(datetime.datetime.now())} === {text_list[choice]} === {url_list[choice]}\n\n\n")
+                    f"Tweet done at : {str(datetime.datetime.now())} === {text_list[0]} === {url_list[0]}\n\n\n")
                 break
 
             except Exception as e:
                 logger.info(
                     f"Tweet can't be done at : {str(datetime.datetime.now())} due to {e} error\n\n\n")
 
-                if "duplicate" in str(e):
-                    continue
                 
 
     def parse(self):
@@ -105,7 +107,7 @@ class ParseFeed():
             text = self.clean(f.get("description"))
             url = f.get("link")
             count = sum((text[i] != ' ') for i in range(len(text)))
-            if 100 < count < 200:
+            if 0 < count < 200:
                 text_list.append(text)
                 url_list.append(url)
         self.follow_back(api)
