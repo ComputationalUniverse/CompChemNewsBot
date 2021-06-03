@@ -5,7 +5,6 @@ import tweepy
 from decouple import config
 import logging
 import datetime
-import random
 
 # url for collecting news
 url = "http://news.google.com/news?q=computational+chemistry+when:1d&hl=en-IN&gl=IN&ceid=IN:en&output=rss"
@@ -79,25 +78,23 @@ class ParseFeed():
         '''
         Posting the news in the twitter and logging the data (First news of the list will be posted: One can modify by using random function)
         '''
-        tweets = api.user_timeline(
-            screen_name="CompChemNewsBot", count=200, tweet_mode='extended')
-
-        tweet_list = [
-            text.full_text[82:-24]
-            for text in tweets
-        ]
-
         # removing news already tweeted
+        file_name = "tweets.txt"
+        with open(file_name, "r") as file:
+            tweet_list = file.readlines()
+        tweet_list = [x.strip() for x in tweet_list] 
         for tweet in tweet_list:
             for text, url in zip(text_list, url_list):
-                if tweet == text:
-                    text_list.remove(text)
-                    url_list.remove(url)
+                if text == tweet:
+                     text_list.remove(text)
+                     url_list.remove(url)
 
         # tweeting the fast news from the modified newslist
         for text in text_list:
             i = 0
             try:
+                with open(file_name, "a") as file:
+                    file.write(f"{text}\n\n")
                 api.update_status(
                     f"@aritraroy24 #compchem #news #update #science #chemistry #quantum\n𝙏𝙊𝘿𝘼𝙔'𝙎 𝙐𝙋𝘿𝘼𝙏𝙀: {text_list[i]}\n{url_list[i]}")
                 logger.info(
