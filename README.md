@@ -29,6 +29,7 @@
 2. ***```tweepy```*** module is used to post latest news in the twitter.
 3. The bot also **follows back** if someone retweets any post.
 4. Also it saves the log in **data.txt** file.
+5. It also keeps the previously done tweets in **tweets.txt** file and checks each runtime to make sure no duplicate post happens.
 
 # How to Use :question::question::question:
 ### Follow These Simple Steps:
