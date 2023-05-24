@@ -13,7 +13,6 @@
 # :small_orange_diamond: requirements.txt :pushpin:
 * tweepy
 * feedparser
-* decouple
 * bs4
 
 # :small_orange_diamond: Get_Sub_News.py :computer: :newspaper:
@@ -21,7 +20,6 @@
    * datetime
    * bs4 (BeautifulSoup)
    * tweepy
-   * decouple
    * logging
    
 # Note: :memo:
