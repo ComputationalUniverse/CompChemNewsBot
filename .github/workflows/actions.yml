@@ -1,4 +1,4 @@
-name: run CompChemNewsBot.py
+name: run main.py
 
 on:
   schedule:
@@ -22,13 +22,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: execute py script # run CompChemNewsBot.py
+      - name: execute py script # run main.py
         env:
           CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
           CONSUMER_SECRET_KEY: ${{ secrets.CONSUMER_SECRET_KEY }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-        run: python CompChemNewsBot.py
+        run: python main.py
           
       - name: commit files
         run: |
