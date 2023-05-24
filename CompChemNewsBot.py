@@ -2,7 +2,7 @@
 import feedparser
 from bs4 import BeautifulSoup
 import tweepy
-from decouple import config
+import os
 import logging
 import datetime
 
@@ -14,10 +14,10 @@ logging.basicConfig(level=logging.INFO, filename='data.txt',)
 logger = logging.getLogger()
 
 # Keys
-CONSUMER_KEY = config('Consumer_Key')
-CONSUMER_SECRET_KEY = config('Consumer_Secret_Key')
-ACCESS_TOKEN = config('Access_Token')
-ACCESS_TOKEN_SECRET = config('Access_Token_Secret')
+CONSUMER_KEY = os.environ["CONSUMER_KEY"]
+CONSUMER_SECRET_KEY = os.environ["CONSUMER_SECRET_KEY"]
+ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
+ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
 
 # Authentication
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET_KEY)
