@@ -20,6 +20,7 @@
    * datetime
    * bs4 (BeautifulSoup)
    * tweepy
+   * os
    * logging
    
 # Note: :memo:
